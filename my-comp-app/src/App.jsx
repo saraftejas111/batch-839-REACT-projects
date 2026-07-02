@@ -1,22 +1,38 @@
+import { useState } from 'react'
 import './App.css'
-import CounterApp from './CounterApp'
-import Difference from './Difference'
 import Sum from './Sum'
 
+
 function App() {
+
+  let [name, setName] = useState('')
+
+  const handleDefault = () => {
+
+    setName('def user')
+  }
+  const handleChange = (e) => {
+
+    console.log("from input = ", e.target.value)
+
+    setName(e.target.value)
+  }
 
   return (
     <>
       <center>
 
-        <h1>I am Root Comp App.jsx</h1>
+        <button onClick={handleDefault}>
+          set default user
+        </button>
+
+        <h3>Enter User name </h3> <input type="text" onChange={handleChange} />
+
+
+
+        <h1>Hello....{name}</h1>
 
         <Sum />
-
-        <Difference />
-
-        <CounterApp />
-
       </center>
     </>
   )
