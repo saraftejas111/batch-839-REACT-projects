@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 import SetColor from './SetColor'
+import Student from './Student'
 
 
 const App = () => {
@@ -26,7 +27,6 @@ const App = () => {
 
     setUname(tag.target.value)
 
-    console.log("uname = ", uname)
   }
 
   // const handleName = (e) => {
@@ -60,11 +60,14 @@ const App = () => {
 
         <h1>Welcome to my Event App...</h1>
 
+        <Student/>
+
+<br /><br />
         <SetColor/>
 
         <button onClick={handleClick}>
           Click Me..
-        </button>
+        </button> {"  "} 
 
         <button onClick={() => handleMyname("Tejas")}>
           Print My Name
@@ -75,7 +78,9 @@ const App = () => {
 
         </h3>
 
-        <button>Send</button> {"  "}
+        <button
+        onClick={()=>console.log("uname : " , uname)}
+        >Send</button> {"  "}
 
         <button onClick={() => setUname('')}>Clear</button>
 

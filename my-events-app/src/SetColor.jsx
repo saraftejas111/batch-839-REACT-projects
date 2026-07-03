@@ -7,15 +7,18 @@ const SetColor = () => {
   return (
     <div>
       
-      <input type="text" onChange={(e)=>setColor(e.target.value)} />
+      enter color : <input type="text" onChange={(e)=>setColor(e.target.value)} />
 
+<br /><br />
       <div
       style={{
         backgroundColor : color , 
-        height: "200px" , 
-        width : "200px"
+        height: "100px" , 
+        width : "100px"
       }}
       ></div>
+
+      <br /><br />
     </div>
   )
 }
