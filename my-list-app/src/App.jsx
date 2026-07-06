@@ -24,6 +24,15 @@ const App = () => {
     setEmployee({ id: '', name: '', role: '', salary: '' })
   }
 
+  const handleDelete = (id) => {
+
+    console.log("deleted id : ", id)
+
+    const newList = allemployees.filter((emp) => emp.id !== id)
+
+    setAllemployees(newList);
+  }
+
   return (
     <div>
       <center>
@@ -49,6 +58,7 @@ const App = () => {
               <th>NAME</th>
               <th>ROLE</th>
               <th>SALARY</th>
+              <th>ACTION</th>
             </tr>
           </thead>
 
@@ -59,6 +69,11 @@ const App = () => {
                 <td>{emp.name}</td>
                 <td>{emp.role}</td>
                 <td>{emp.salary}</td>
+                <td>
+                  <button onClick={() => handleDelete(emp.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
