@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
+import StudentData from './StudentData'
 
 
 const App = () => {
@@ -8,11 +9,11 @@ const App = () => {
 
   let [employee, setEmployee] = useState({ id: '', name: '', role: '', salary: '' })
 
-  let [up , setUp] = useState(false) ; 
+  let [up, setUp] = useState(false);
 
   const handleChange = (e) => {
 
-  let { name, value } = e.target;
+    let { name, value } = e.target;
 
     setEmployee({ ...employee, [name]: value })
   }
@@ -21,7 +22,7 @@ const App = () => {
 
     e.preventDefault();
 
-     const newList = allemployees.filter((emp) => emp.id !== employee.id)
+    const newList = allemployees.filter((emp) => emp.id !== employee.id)
 
     setAllemployees([...newList, employee])
 
@@ -39,11 +40,11 @@ const App = () => {
     setAllemployees(newList);
   }
 
-  const handleUpdate = (emp) =>{
+  const handleUpdate = (emp) => {
 
-    console.log("update emp = " , emp)
+    console.log("update emp = ", emp)
 
-    setUp(true) ; 
+    setUp(true);
 
     setEmployee(emp)
   }
@@ -53,13 +54,15 @@ const App = () => {
       <center>
         <h1>Welcome to List App</h1>
 
-        <h3>{up ? "Update Employee Form" : "Add Employee Form"}</h3>
+        <StudentData/>
+
+        {/* <h3>{up ? "Update Employee Form" : "Add Employee Form"}</h3>
 
         <form onSubmit={handleSubmit}>
-          enter id : <input type="text" name='id' value={employee.id} onChange={handleChange} required/> <br /><br />
-          enter name : <input type="text" name='name' value={employee.name} onChange={handleChange} required/> <br /><br />
-          enter role : <input type="text" name='role' value={employee.role} onChange={handleChange} required/> <br /><br />
-          enter salary : <input type="text" name='salary' value={employee.salary} onChange={handleChange} required/> <br /><br />
+          enter id : <input type="text" name='id' value={employee.id} onChange={handleChange} required /> <br /><br />
+          enter name : <input type="text" name='name' value={employee.name} onChange={handleChange} required /> <br /><br />
+          enter role : <input type="text" name='role' value={employee.role} onChange={handleChange} required /> <br /><br />
+          enter salary : <input type="text" name='salary' value={employee.salary} onChange={handleChange} required /> <br /><br />
 
           <button type='submit'>{up ? "Update Employee" : "Add Employee"}</button>
         </form>
@@ -95,7 +98,7 @@ const App = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </center>
     </div>
   )
