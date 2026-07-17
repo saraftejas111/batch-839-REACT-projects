@@ -1,47 +1,89 @@
 import React, { useEffect, useState } from 'react'
-import { addEmployees, showAllEmployees } from './apiServices'
+import { addEmployees, deleteById, showAllEmployees, updateEmployee } from './apiServices'
 
 const App = () => {
 
   const [allemps, setAllemps] = useState([])
+
+  const [form, setForm] = useState({ name: '', role: '', salary: '' })
+
+  const [edit, setEdit] = useState(null)
 
   useEffect(() => {
     loadEmployees();
   }, [])
 
   const loadEmployees = async () => {
-    // showAllEmployees().then((res)=>{
-    //   console.log("data : " , res.data)
-    //   setAllemps(res.data)
-    // }).catch((err)=> {
-    //   console.log("error in get : " , err)
+    // fetch(`http://localhost:8080/employees`).then((res) => {
+
+    //   res.json().then((result) => {
+    //     console.log("result : ", result)
+    //     setAllemps(result)
+    //   })
+    // }).catch((err) => {
+    //   console.log("error in get : ", err)
     // })
+
+    // ---- optimized
+    
+    // showAllEmployees().then((res)=>{
+      //   console.log("data : " , res.data)
+      //   setAllemps(res.data)
+      // }).catch((err)=> {
+        //   console.log("error in get : " , err)
+        // })
+
+
+        // ---- optimized pro max 
+
     const { data } = await showAllEmployees();
     setAllemps(data);
-  }
-
-  const addEmp = () => {
-
-    let emp = { name: 'raj', role: 'dev', salary: 123456 }
-
-    addEmployees(emp).then((res) => {
-      console.log("data added : ", res.data)
-    }).catch((err) => {
-      console.log("error in add : ", err)
-    })
-
-
 
   }
 
+
+
+  const handleDelete = async (id) => {
+    const res = await deleteById(id);
+    loadEmployees();
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value })
+  }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    if (edit) {
+      const up = await updateEmployee(edit.id, form)
+    } else {
+      const add = await addEmployees(form)
+    }
+    
+    setForm({ name: '', role: '', salary: '' })
+    loadEmployees();
+    setEdit(null)
+  }
+
+  const handleUpdate = (emp) => {
+    setEdit(emp)
+    setForm(emp)
+  }
   return (
     <div>
       <center>
         <h1>Welcome to my axios app</h1>
 
-        <button onClick={addEmp}>
-          Add Employee
-        </button>
+        <form onSubmit={handleSubmit}>
+          <h2>{edit ? "Update Employee Form" : "Add Employee Form"}</h2>
+          name : <input type="text" name='name' value={form.name} onChange={handleChange} required /><br /><br />
+          role : <input type="text" name='role' value={form.role} onChange={handleChange} required /><br /><br />
+          salary : <input type="text" name='salary' value={form.salary} onChange={handleChange} required /><br /><br />
+
+          <button>{edit ? "Update Employee" : "Add Employee"}</button>
+        </form>
 
         <h2>
           All Employees
@@ -63,6 +105,10 @@ const App = () => {
                   <td>{e.name}</td>
                   <td>{e.role}</td>
                   <td>{e.salary}</td>
+                  <td>
+                    <button onClick={() => handleDelete(e.id)}>Delete</button> {" "}
+                    <button onClick={() => handleUpdate(e)}>Update</button> {" "}
+                  </td>
                 </tr>
               ))
             }

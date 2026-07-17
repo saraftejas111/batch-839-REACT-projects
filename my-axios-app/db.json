@@ -1,34 +1,16 @@
 {
   "employees": [
     {
-      "name": "Rahul",
+      "name": "Rahul ray",
       "role": "Developer",
       "salary": 50000,
       "id": "d4wND6uvT1Y"
     },
     {
-      "name": "Sneha",
+      "name": "Sneha tiwari",
       "role": "Tester",
       "salary": 40000,
       "id": "JRbi5N1imSk"
-    },
-    {
-      "name": "raj",
-      "role": "dev",
-      "salary": 123456,
-      "id": "EV_Kq-MUN54"
-    },
-    {
-      "name": "raj",
-      "role": "dev",
-      "salary": 123456,
-      "id": "sAKo0PV67CI"
-    },
-    {
-      "name": "raj",
-      "role": "dev",
-      "salary": 123456,
-      "id": "pUIQskd_888"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
