@@ -1,0 +1,30 @@
+{
+  "employees": [
+    {
+      "name": "Rahul ray",
+      "role": "Developer",
+      "salary": 50000,
+      "id": "d4wND6uvT1Y"
+    },
+    {
+      "name": "Sneha tiwari",
+      "role": "Tester",
+      "salary": 40000,
+      "id": "JRbi5N1imSk"
+    }
+  ],
+
+  "students": [
+    {
+      "name": "Rahul",
+      "std": "8th",
+      "marks": 50
+    },
+    {
+      "name": "Sneha tiwari",
+      "std": "9th",
+      "marks": 40
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
