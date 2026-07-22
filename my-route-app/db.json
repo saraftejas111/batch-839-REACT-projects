@@ -1,0 +1,19 @@
+{
+  "employees": [
+    {
+      "name": "raj",
+      "email": "raj",
+      "password": 123,
+      "role": "admin",
+      "id": "d4wND6uvT1Y"
+    },
+    {
+      "name": "tina",
+      "email": "tina",
+      "password": 123,
+      "role": "user",
+      "id": "JRbi5N1imSk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
