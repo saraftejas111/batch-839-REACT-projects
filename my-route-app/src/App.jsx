@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import Mobiles from './pages/Mobiles'
 import Fashion from './pages/Fashion'
@@ -11,10 +11,22 @@ import Deals from './pages/deals'
 import Navbar from './components/Navbar'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoute from './ProtectedRoute'
+import Profile from './pages/Profile'
+import Settings from './pages/Settings'
+import Message from './pages/Message'
 
 const App = () => {
 
-  const [acceptLogin , setAcceptLogin] = useState(null)
+  const [acceptLogin, setAcceptLogin] = useState(null)
+
+  const userData = localStorage.getItem('usr')
+  
+    const navigateMe = useNavigate() ;
+    const handleLogout = () =>{
+        localStorage.removeItem('usr')
+        navigateMe('/login')
+    }
+
   return (
     <div>
       <center>
@@ -28,19 +40,31 @@ const App = () => {
           <Route path='mobiles' element={<Mobiles />} />
           <Route path='fashion' element={<Fashion />} />
           <Route path='kids' element={<Kids />} />
-         
-          <Route path='login' element={<Login/>} />
-          
-          <Route path='dashboard' element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
+          <Route path='login' element={<Login />} />
+
+          <Route element={<ProtectedRoute />}>
+
+            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='settings' element={<Settings />} />
+            <Route path='messages' element={<Message />} />
+
+          </Route>
+
+
 
 
         </Routes>
 
-{/* 
+        {
+          userData && (
+            <>
+            <button onClick={handleLogout}>Logout</button> <br /><br />
+            </>
+          )
+        }
+
+        {/* 
         <Pay />
 
         <Deals/> */}

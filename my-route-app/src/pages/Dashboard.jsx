@@ -1,26 +1,32 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Dashboard = () => {
 
-    const [count ,setCount] = useState(0)
+  const location = useLocation();
 
-    const navigateMe = useNavigate() ;
+  const users = JSON.parse(localStorage.getItem('usr'))
 
-    const handleLogout = () =>{
-        localStorage.removeItem('usr')
-        navigateMe('/login')
-    }
+
+  console.log("dash : " , location)
+
 
   return (
     <div>
-      <h2>Welcome to Dashboard : {localStorage.getItem('usr').toUpperCase()}</h2>
+      <h2>Welcome to Dashboard : {users.role.toUpperCase()}</h2>
 
-      <h3>Count : {count}</h3>
+      <h3>name : {users.name}</h3>
+      <h3>role : {users.role}</h3>
+      <h3>email : {users.email}</h3>
 
-      <button onClick={()=>setCount(count+1)}>Increase</button> <br /><br />
 
-      <button onClick={handleLogout}>Logout</button> <br /><br />
+      {/* 
+         
+         <h3>name : {location.state.users.name}</h3>
+         <h3>role : {location.state.users.role}</h3>
+         <h3>email : {location.state.users.email}</h3> 
+         
+         */}
+
 
     </div>
   )

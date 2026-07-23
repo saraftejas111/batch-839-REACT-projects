@@ -7,7 +7,10 @@ const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' })
   const navigateMe = useNavigate();
 
-  
+  const userData = localStorage.getItem('usr')
+
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,10 +29,11 @@ const Login = () => {
     if (userFound != null) {
 
       if (userFound.password == form.password) {
-    
-        localStorage.setItem("usr" , userFound.role)
 
-        navigateMe('/dashboard')
+        localStorage.setItem("usr", JSON.stringify(userFound))
+
+
+        navigateMe('/dashboard', { state: { users: userFound } })
       } else {
         alert('Incorrect Password')
       }
@@ -44,14 +48,29 @@ const Login = () => {
   return (
     <div>
 
-      <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
-        email : <input type="text" name='email' value={form.email} onChange={handleChange} required /> <br /><br />
-        password : <input type="text" name='password' value={form.password} onChange={handleChange} required /> <br /><br />
+      {
+        userData &&
+        <h2>Already Logged-In</h2>
+      }
 
-        <button type='submit'>Login</button>
-      </form>
+      {
+        !userData && (
+          <>
+            <h2>Login</h2>
+
+            <form onSubmit={handleSubmit}>
+              email : <input type="text" name='email' value={form.email} onChange={handleChange} required /> <br /><br />
+              password : <input type="text" name='password' value={form.password} onChange={handleChange} required /> <br /><br />
+
+              <button type='submit'>Login</button><br /><br />
+            </form>
+          </>
+        )
+      }
+
+
+
     </div>
   )
 }

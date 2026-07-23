@@ -13,6 +13,9 @@ const Navbar = () => {
              <NavLink to='kids'>Kids</NavLink>{" | "}
              <NavLink to='login'>Login</NavLink>{" | "}
              <NavLink to='dashboard'>Dashboard</NavLink>{" | "}
+             <NavLink to='profile'>Profile</NavLink>{" | "}
+             <NavLink to='settings'>Settings</NavLink>{" | "}
+             <NavLink to='messages'>Messages</NavLink>{" | "}
       </nav>
 
     </div>
